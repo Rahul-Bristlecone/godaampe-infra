@@ -7,7 +7,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/<org>/<repo>.git
+    repoURL: https://github.com/Rahul-Bristlecone/godaampe-infra.git
     targetRevision: HEAD
     path: argo-cd/child-apps
   destination:
