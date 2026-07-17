@@ -1,0 +1,71 @@
+apiVersion: networking.k8s.io/v1        # API version for NetworkPolicy resources
+kind: NetworkPolicy                     # Resource type; defines firewall rules for Pods
+metadata:
+  name: network-policy-db               # Name of the NetworkPolicy
+  namespace: godaampe                   # Namespace where the policy is applied
+
+spec:
+  podSelector:                          # Selects which Pods this policy applies to
+    matchLabels:
+      app: godaampe-db                  # Targets the Database Pod (label: app=godaampe-db)
+
+  policyTypes:
+    - Ingress                           # This policy only controls incoming traffic
+
+# this is database pod, so it will recieve the incoming traffic, hence ingress rules.
+  ingress:                              # Define allowed incoming traffic rules
+    - from:                             # Specify allowed sources
+        - podSelector:                  # Select Pods by label
+            matchLabels:
+              app: order-service        # Only allow traffic from API Pod (label: app=api)
+      ports:                            # Restrict traffic to specific ports/protocols
+        - protocol: TCP                 # Only TCP traffic
+          port: 3306                    # Only on port 5432 (PostgreSQL default)
+    
+    - from:
+        - podSelector:
+            matchLabels:
+               app: customer-service
+      ports:
+        - protocol: TCP
+          port: 3306
+    
+    - from:
+        - podSelector:
+            matchLabels:
+               app: company-service
+      ports:
+        - protocol: TCP
+          port: 3306
+    
+    - from:
+        - podSelector:
+            matchLabels:
+               app: config-service
+      ports:
+        - protocol: TCP
+          port: 3306
+    
+    - from:
+        - podSelector:
+            matchLabels:
+               app: product-service
+      ports:
+        - protocol: TCP
+          port: 3306
+    
+    - from:
+        - podSelector:
+            matchLabels:
+               app: store-service
+      ports:
+        - protocol: TCP
+          port: 3306
+    
+    - from:
+        - podSelector:
+            matchLabels:
+               app: user-service
+      ports:
+        - protocol: TCP
+          port: 3306
