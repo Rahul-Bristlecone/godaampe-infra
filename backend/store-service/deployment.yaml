@@ -7,6 +7,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "2"
 spec:
   replicas: 1
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: store-service
@@ -28,11 +29,11 @@ spec:
         - containerPort: 5000
         resources:
           requests:
+            memory: "128Mi"
+            cpu: "125m"
+          limits:
             memory: "256Mi"
             cpu: "250m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
         readinessProbe:
           httpGet:
             path: /health
