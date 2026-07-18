@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: frontend-configmap
   namespace: frontend
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 data:
   USER_SERVICE_HOST: "user-service.godaampe.svc.cluster.local"
   STORE_SERVICE_HOST: "store-service.godaampe.svc.cluster.local"

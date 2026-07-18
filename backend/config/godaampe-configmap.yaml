@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: godaampe-config
   namespace: godaampe
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 data:
   MYSQL_DATABASE: godaampe_db
   DB_HOST: godaampe-db
