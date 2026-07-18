@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: sharma92/godaampe:0d5247ba59ea32214468331a2534364ebe79e681
+          image: sharma92/godaampe:ebda0ff5a19930ef5f41d15efef67ae28a329014
           imagePullPolicy: Always
           ports:
             - containerPort: 80
