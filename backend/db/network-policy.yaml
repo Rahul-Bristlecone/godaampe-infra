@@ -2,7 +2,9 @@ apiVersion: networking.k8s.io/v1        # API version for NetworkPolicy resource
 kind: NetworkPolicy                     # Resource type; defines firewall rules for Pods
 metadata:
   name: network-policy-db               # Name of the NetworkPolicy
-  namespace: godaampe                   # Namespace where the policy is applied
+  namespace: godaampe
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"                   # Namespace where the policy is applied
 
 spec:
   podSelector:                          # Selects which Pods this policy applies to
