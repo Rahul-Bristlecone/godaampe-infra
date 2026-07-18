@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: user-service
-        image: sharma92/daemons:user-service-latest
+        image: sharma92/daemons:user-service-871e302e1bba7cb5cb4c192417278d20ba25b8bc
         imagePullPolicy: Always
         envFrom:
         - secretRef:
