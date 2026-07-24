@@ -4,16 +4,39 @@ kind: Application
 metadata:
   name: godaampe-root
   namespace: argocd
+
+  labels:
+    app: godaampe
+    environment: production
+    owner: Rahul-Bristlecone
+    org: Godaampe
+
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+
 spec:
+  # project
   project: default
+
+  # source repo and path
   source:
     repoURL: https://github.com/Rahul-Bristlecone/godaampe-infra.git
-    targetRevision: HEAD
+    targetRevision: main
     path: argo-cd/child-apps
+
+  # destination cluster and namespace
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
+
+  # sync policy  
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncWindows:
+      - kind: block
+        schedule: "0 0 * * 5"  # Friday (0=Sunday, 5=Friday)
+        duration: 24h           # Block for full 24 hours
+        applications:
+          - '*'                 # Apply to all applications
