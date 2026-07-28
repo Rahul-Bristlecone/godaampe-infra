@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: order-service
-        image: sharma92/daemons:order-service-e3e782de2793e4c5b927466201d100078f3785f5
+        image: sharma92/daemons:order-service-3e069981dd0e98f62010a17e41dc750df3dfb1d7
         imagePullPolicy: Always
         envFrom:
         - secretRef:
